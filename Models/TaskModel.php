@@ -1,6 +1,5 @@
 <?php
 namespace MVC\Models;
-require ('../vendor/autoload.php');
 use MVC\Core\Model;
 class TaskModel extends Model
 {

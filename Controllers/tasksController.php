@@ -1,5 +1,4 @@
 <?php
-require ('../vendor/autoload.php');
 use MVC\Core\Controller;
 use MVC\Models\TaskResourceModel;
 use MVC\Models\TaskModel;
@@ -20,8 +19,9 @@ class tasksController extends Controller
             $taskModel=new TaskModel();
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
-            $task->save($taskModel);
-            header("Location: " . WEBROOT . "tasks/index");
+            if ($task->save($taskModel)) {
+                header("Location: " . WEBROOT . "tasks/index");
+            }
 
         }
 
@@ -38,8 +38,9 @@ class tasksController extends Controller
             $taskModel->setId($id);
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
-            $task->save($taskModel);
-            header("Location: " . WEBROOT . "tasks/index");
+            if ($task->save($taskModel)) {
+                header("Location: " . WEBROOT . "tasks/index");
+            }
         }
         $this->set($d);
         $this->render("edit");

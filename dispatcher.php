@@ -1,6 +1,5 @@
 <?php
 namespace MVC;
-require ('vendor/autoload.php');
 class Dispatcher
 {
 

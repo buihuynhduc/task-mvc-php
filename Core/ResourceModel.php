@@ -1,6 +1,5 @@
 <?php
 namespace MVC\Core;
-require ('../vendor/autoload.php');
 use PDO;
 use MVC\Config\Database;
 use MVC\Core\ResourceModelInterface;
@@ -9,7 +8,7 @@ class ResourceModel implements ResourceModelInterface
     private $table;
     private $id;
     private $model;
-    public function _inni($table, $id, $model)
+    public function _init($table, $id, $model)
     {
        $this->table=$table;
        $this->id=$id;
@@ -25,7 +24,7 @@ class ResourceModel implements ResourceModelInterface
     }
     public function save($model)
     {
-       $arrayModel=get_object_vars($model);
+       $arrayModel=$model->getProperties($model);
        $id = $arrayModel[$this->id];
        $stringModel="title = :title, description = :description";
        if($id==null)

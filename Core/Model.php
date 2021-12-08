@@ -7,4 +7,3 @@ namespace MVC\Core;
             return get_object_vars($object);
         }
     }
-?>
