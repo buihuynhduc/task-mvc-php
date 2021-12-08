@@ -26,20 +26,31 @@ class ResourceModel implements ResourceModelInterface
     {
        $arrayModel=$model->getProperties($model);
        $id = $arrayModel[$this->id];
-       $stringModel="title = :title, description = :description";
+       $stringModel=null;
+        foreach ($arrayModel as $key=>$value)
+        {
+            if($key!=$this->id)
+            {
+                $stringModel=$stringModel.$key." = :".$key.", " ;
+            }
+        }
+        $stringModel = trim($stringModel,", ");
        if($id==null)
        {
            $sql="insert into $this->table set $stringModel";
        }
        else
        {
-
-           $sql="update $this->table set $stringModel where $this->id=$id";
+           $sql="UPDATE $this->table SET $stringModel WHERE $this->id=$id";
        }
-
        $req=Database::getBdd()->prepare($sql);
-       $req->bindParam(":title",$arrayModel['title']);
-        $req->bindParam(":description",$arrayModel['description']);
+       foreach ($arrayModel as $key=>$value)
+       {
+           if($key!=$this->id)
+           {
+                $req->bindValue($key,$value);
+           }
+       }
        return $req->execute();
     }
     public function delete($id)
