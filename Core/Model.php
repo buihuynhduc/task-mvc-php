@@ -1,9 +1,10 @@
 <?php
+
 namespace MVC\Core;
-    class Model
+class Model
+{
+    function getProperties($object)
     {
-        function getProperties($object)
-        {
-            return get_object_vars($object);
-        }
+        return get_object_vars($object);
     }
+}

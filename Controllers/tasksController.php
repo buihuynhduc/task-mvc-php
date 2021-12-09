@@ -1,25 +1,28 @@
 <?php
+
 use MVC\Core\Controller;
 use MVC\Models\TaskResourceModel;
 use MVC\Models\TaskModel;
+use MVC\Models\TaskRepository;
+
 class tasksController extends Controller
 {
     function index()
     {
-        $tasks = new TaskResourceModel();
-        $d['tasks'] = $tasks->getall();
+        $taskrp = new TaskRepository();
+        $d['tasks'] = $taskrp->getall();
         $this->set($d);
         $this->render("index");
     }
+
     function create()
     {
-        $task= new TaskResourceModel();
-        if (isset($_POST["title"]))
-        {
-            $taskModel=new TaskModel();
+        $taskrp = new TaskRepository();
+        if (isset($_POST["title"])) {
+            $taskModel = new TaskModel();
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
-            if ($task->save($taskModel)) {
+            if ($taskrp->add($taskModel)) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
 
@@ -30,15 +33,14 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        $task= new TaskResourceModel();
-        $d["task"] =(array)$task->get($id);
-        if (isset($_POST["title"]))
-        {
-            $taskModel=new TaskModel();
+        $taskrp = new TaskRepository();
+        $d["task"] = (array)$taskrp->get($id);
+        if (isset($_POST["title"])) {
+            $taskModel = new TaskModel();
             $taskModel->setId($id);
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
-            if ($task->save($taskModel)) {
+            if ($taskrp->add($taskModel)) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
         }
@@ -48,11 +50,11 @@ class tasksController extends Controller
 
     function delete($id)
     {
-        $task = new TaskResourceModel();
-        if ($task->delete($id))
-        {
+        $taskrp = new TaskRepository();
+        if ($taskrp->delete($id)) {
             header("Location: " . WEBROOT . "tasks/index");
         }
     }
 }
+
 ?>

@@ -1,11 +1,14 @@
 <?php
+
 namespace MVC\Models;
+
 use MVC\Core\Model;
+
 class TaskModel extends Model
 {
- public $id;
- public $title;
- public $description;
+    public $id;
+    public $title;
+    public $description;
 
     /**
      * @param mixed $title
@@ -55,4 +58,5 @@ class TaskModel extends Model
         return $this->description;
     }
 }
+
 ?>
