@@ -18,11 +18,9 @@ class Dispatcher
 
     public function loadController()
     {
-        $name = $this->request->controller . "Controller";
-        $file = ROOT . 'Controllers/' . $name . '.php';
-        require($file);
-        $controller = new $name();
-        return $controller;
+        $name = $this->request->controller."Controller";
+        $controller="MVC\\Controllers\\".$name;
+        return new $controller;
     }
 
 }
