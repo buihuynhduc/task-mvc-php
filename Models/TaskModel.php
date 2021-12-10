@@ -9,6 +9,8 @@ class TaskModel extends Model
     public $id;
     public $title;
     public $description;
+    public $created_at;
+    public $updated_at;
 
     /**
      * @param mixed $title
@@ -16,6 +18,38 @@ class TaskModel extends Model
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @param mixed $updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @param mixed $created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 
     /**

@@ -13,10 +13,10 @@ class TaskRepository
         return $tasks->save($model);
     }
 
-    function delete($mode)
+    function delete($model)
     {
         $task = new TaskResourceModel();
-        return $task->delete($mode);
+        return $task->delete($model);
     }
 
     function get($id)

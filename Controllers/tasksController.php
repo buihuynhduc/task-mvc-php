@@ -7,6 +7,7 @@ use MVC\Models\TaskRepository;
 
 class tasksController extends Controller
 {
+    public  $format = "%Y-%m-%d %H:%M:%S";
     function index()
     {
         $taskrp = new TaskRepository();
@@ -18,10 +19,15 @@ class tasksController extends Controller
     function create()
     {
         $taskrp = new TaskRepository();
+
         if (isset($_POST["title"])) {
             $taskModel = new TaskModel();
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
+            $taskModel->setCreatedAt(strftime($this->format),time());
+            $taskModel->setUpdatedAt(strftime($this->format),time());
+            echo $taskModel->getCreatedAt();
+            echo $taskModel->getUpdatedAt();
             if ($taskrp->add($taskModel)) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
@@ -40,6 +46,7 @@ class tasksController extends Controller
             $taskModel->setId($id);
             $taskModel->setDescription($_POST["description"]);
             $taskModel->setTitle($_POST["title"]);
+            $taskModel->setUpdatedAt(strftime($this->format),time());
             if ($taskrp->add($taskModel)) {
                 header("Location: " . WEBROOT . "tasks/index");
             }
