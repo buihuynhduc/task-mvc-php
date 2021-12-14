@@ -40,15 +40,17 @@ class tasksController extends Controller
     function edit($id)
     {
         $taskrp = new TaskRepository();
-        $d["task"] = (array)$taskrp->get($id);
+        $d["task"] = $taskrp->get($id);
         if (isset($_POST["title"])) {
-            $taskModel = new TaskModel();
-            $taskModel->setId($id);
-            $taskModel->setDescription($_POST["description"]);
-            $taskModel->setTitle($_POST["title"]);
-            $taskModel->setUpdatedAt(strftime($this->format),time());
-            if ($taskrp->add($taskModel)) {
-                header("Location: " . WEBROOT . "tasks/index");
+            $taskModel = $taskrp->get($id);
+            if($_POST['description']!=null&&$_POST['title']!=null)
+            {
+                $taskModel->setDescription($_POST["description"]);
+                $taskModel->setTitle($_POST["title"]);
+                $taskModel->setUpdatedAt(strftime($this->format),time());
+                if ($taskrp->edit($taskModel)) {
+                    header("Location: " . WEBROOT . "tasks/index");
+                }
             }
         }
         $this->set($d);

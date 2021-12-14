@@ -6,11 +6,11 @@ use MVC\Core\Model;
 
 class TaskModel extends Model
 {
-    public $id;
-    public $title;
-    public $description;
-    public $created_at;
-    public $updated_at;
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $created_at;
+    protected $updated_at;
 
     /**
      * @param mixed $title

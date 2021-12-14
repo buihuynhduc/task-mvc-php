@@ -4,10 +4,16 @@ namespace MVC\Models;
 
 use MVC\Models\TaskResourceModel;
 
+
 class TaskRepository
 {
 
     function add($model)
+    {
+        $tasks = new TaskResourceModel();
+        return $tasks->save($model);
+    }
+    function edit($model)
     {
         $tasks = new TaskResourceModel();
         return $tasks->save($model);

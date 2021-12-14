@@ -13,10 +13,10 @@ class Controller
 
     function render($filename)
     {
-        $getclass=str_replace('\\',"/", get_class($this));
+        $getclass = str_replace('\\', "/", get_class($this));
         extract($this->vars);
         ob_start();
-        require(ROOT . "Views/" . ucfirst(str_replace('Controller','',str_replace('MVC/Controllers/', '', $getclass))) . '/' . $filename . '.php');
+        require(ROOT . "Views/" . ucfirst(str_replace('Controller', '', str_replace('MVC/Controllers/', '', $getclass))) . '/' . $filename . '.php');
         $content_for_layout = ob_get_clean();
 
         if ($this->layout == false) {
