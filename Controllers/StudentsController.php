@@ -3,9 +3,9 @@
 namespace MVC\Controllers;
 
 use MVC\Core\Controller;
-use MVC\Models\StudentModel;
-use MVC\Models\StudentRepository;
-use MVC\Models\TaskModel;
+use MVC\Models\Student\StudentModel;
+use MVC\Models\Student\StudentRepository;
+use MVC\Models\Student\TaskModel;
 
 class  studentsController extends Controller
 {

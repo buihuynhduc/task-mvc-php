@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models;
+namespace MVC\Models\Task;
 
 use MVC\Core\ResourceModel;
 

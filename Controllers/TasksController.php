@@ -3,9 +3,9 @@
 namespace MVC\Controllers;
 
 use MVC\Core\Controller;
-use MVC\Models\TaskResourceModel;
-use MVC\Models\TaskModel;
-use MVC\Models\TaskRepository;
+use MVC\Models\Task\TaskResourceModel;
+use MVC\Models\Task\TaskModel;
+use MVC\Models\Task\TaskRepository;
 
 class tasksController extends Controller
 {
